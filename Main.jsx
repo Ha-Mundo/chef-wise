@@ -1,17 +1,22 @@
 import React from "react"
 import IngredientsList from "./components/IngredientsList.jsx"
 import WiseRecipe from "./components/WiseRecipe.jsx"
+import { getRecipeFromMistral } from "./ai.js"
 
 export default function Main() { 
 
     const [ingredients, setIngredients] = React.useState(
         ["all the main spices", "pasta", "ground beef", "tomato paste"]
     )
-    const [recipeShown, setRecipeShown] = React.useState(false)
     
-    function toggleRecipeShown() {
-        setRecipeShown(prevShown => !prevShown)
+    const [recipe, setRecipe] = React.useState("")
+
+    async function getRecipe() {
+        const recipeMarkdown = await getRecipeFromMistral(ingredients)
+        setRecipe(recipeMarkdown)
     }
+
+    console.log(recipe)
 
     function addIngredient(formData) {
         const newIngredient = formData.get("ingredient")
@@ -32,9 +37,9 @@ export default function Main() {
             
             {ingredients.length > 0 && <IngredientsList 
             ingredients={ingredients} 
-            toggleRecipeShown={toggleRecipeShown} />}
+            getRecipe={getRecipe} />}
             
-            {recipeShown && <WiseRecipe />}
+            {recipe && <WiseRecipe recipe={recipe} />}
         </main>
     )
 }
