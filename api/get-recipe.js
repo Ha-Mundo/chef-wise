@@ -12,9 +12,9 @@ export default async function handler(req, res) {
   const { ingredients } = req.body;
   const ingredientsString = ingredients.join(", ");
 
-  const inference = new InferenceClient({
-    accessToken: process.env.HF_ACCESS_TOKEN,
-  });
+  console.log("HF_ACCESS_TOKEN type:", typeof process.env.HF_ACCESS_TOKEN);
+ 
+  const inference = new InferenceClient(process.env.HF_ACCESS_TOKEN);
 
   try {
     const response = await inference.chatCompletion({
