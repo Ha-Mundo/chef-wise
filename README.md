@@ -90,7 +90,7 @@ Make sure .env is listed in .gitignore to prevent it from being committed.
 ### 4. Run Locally
 If using Vercel serverless functions:
 ```
-vercel dev
+npx vercel dev
 ```
 
 Otherwise, to test only the frontend:
