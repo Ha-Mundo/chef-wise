@@ -1,7 +1,7 @@
 import React from "react"
 import IngredientsList from "./IngredientsList.jsx"
 import WiseRecipe from "./WiseRecipe.jsx"
-import { getRecipeFromMistral } from "../ai.js"
+import getRecipeFromMistral  from "../ai.js"
 
 export default function Main() { 
 
