@@ -1,4 +1,4 @@
-export async function getRecipeFromMistral(ingredientsArr) {
+export default async function getRecipeFromMistral(ingredientsArr) {
   const response = await fetch("/api/get-recipe", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
