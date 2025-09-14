@@ -22,7 +22,7 @@
 
 2 - The frontend sends a POST request to /api/get-recipe.
 
-3 - A serverless function securely communicates with    Hugging Face's API using an access token stored in the backend.
+3 - A serverless function securely communicates with Hugging Face's API using an access token stored in the backend.
 
 4 - The AI responds with a markdown-formatted recipe.
 
@@ -47,8 +47,10 @@ Chef-Wise/
 ├── api/                      # Serverless backend functions (e.g., for Vercel)
 │   └── get-recipe.js         # Secure Hugging Face API call
 ├── components/               # Reusable React components
+│   ├── Header.jsx            # Header UI component
 │   ├── IngredientsList.jsx   # UI for entering ingredients
-│   └── WiseRecipe.jsx       # Displays the generated recipe
+│   ├── Main.jsx              # Main layout or routing logic
+│   └── WiseRecipe.jsx        # Displays the generated recipe
 ├── images/                   # Static assets (e.g., icons)
 │   └── chef-icon.png
 ├── .env                      # Environment variables (NOT committed to Git)
@@ -56,11 +58,9 @@ Chef-Wise/
 ├── ai.js                     # Frontend fetch to backend API
 ├── App.js                    # Main App component
 ├── eslint.config.js          # ESLint configuration
-├── Header.jsx                # Header UI component
 ├── index.css                 # Global styles
 ├── index.html                # HTML entry point for Vite
 ├── index.jsx                 # Main React renderer
-├── Main.jsx                  # Main layout or routing logic
 ├── package.json              # Project metadata and dependencies
 ├── package-lock.json         # Exact versions of dependencies
 └── vite.config.js            # Vite configuration
