@@ -1,13 +1,20 @@
 import React from "react"
 import IngredientsList from "./IngredientsList.jsx"
 import WiseRecipe from "./WiseRecipe.jsx"
-import getRecipeFromMistral  from "../ai.js"
+import getRecipeFromMistral from "../ai.js"
 
 export default function Main() { 
 
     const [ingredients, setIngredients] = React.useState([])
     
     const [recipe, setRecipe] = React.useState("")
+    const recipeSection = React.useRef(null) 
+    
+    React.useEffect(() => {
+        if (recipe !== "" && recipeSection.current !== null) {
+            recipeSection.current.scrollIntoView({behavior: "smooth"})
+        }
+    }, [recipe])
 
     async function getRecipe() {
         const recipeMarkdown = await getRecipeFromMistral(ingredients)
@@ -33,9 +40,12 @@ export default function Main() {
                 <button>Add ingredient</button>
             </form>
             
-            {ingredients.length > 0 && <IngredientsList 
-            ingredients={ingredients} 
-            getRecipe={getRecipe} />}
+            {ingredients.length > 0 &&
+                <IngredientsList 
+                    ref={recipeSection}
+                    ingredients={ingredients} 
+                    getRecipe={getRecipe} 
+                />}
             
             {recipe && <WiseRecipe recipe={recipe} />}
         </main>
