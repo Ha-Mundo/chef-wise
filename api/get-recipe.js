@@ -18,13 +18,14 @@ export default async function handler(req, res) {
 
   try {
     const response = await inference.chatCompletion({
-      model: "mistralai/Mixtral-8x7B-Instruct-v0.1",
-      messages: [
-        { role: "system", content: SYSTEM_PROMPT },
-        { role: "user", content: `I have ${ingredientsString}. Please give me a recipe you'd recommend I make!` },
-      ],
-      max_tokens: 1024,
-    });
+  model: "google/gemma-2-9b-it",
+  messages: [
+    { role: "system", content: SYSTEM_PROMPT },
+    { role: "user", content: `I have ${ingredientsString}. Please give me a recipe you'd recommend I make!` },
+  ],
+  max_tokens: 1024,
+});
+
 
     const recipe = response.choices?.[0]?.message?.content;
     res.status(200).json({ recipe });
