@@ -1,6 +1,7 @@
 # 👨‍🍳 Chef Wise — AI-Powered Recipe Generator
 
-**Chef Wise** is a modern React + Vite web app that helps users create recipes based on the ingredients they have on hand. It uses Hugging Face’s `Mixtral-8x7B-Instruct` model to generate markdown-formatted recipe suggestions.
+**Chef Wise** is a modern React + Vite web app that generates recipes based on the ingredients the user has available.
+It uses Hugging Face’s `google/gemma-2-9b-it` model to create clean, markdown-formatted recipe suggestions.
 
 > 🛡️ API security is a top priority: API calls are routed through a secure backend to keep your Hugging Face token private.
 
@@ -150,5 +151,4 @@ Vercel will automatically deploy the frontend and backend (/api folder) together
 
 ## 🙌 Acknowledgments
 
-- AI model: Mixtral-8x7B-Instruct
- via Hugging Face
+- AI model: `google/gemma-2-9b-it` via Hugging Face
