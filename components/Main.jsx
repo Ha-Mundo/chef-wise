@@ -4,16 +4,16 @@ import WiseRecipe from "./WiseRecipe.jsx"
 import getRecipeFromMistral from "../ai.js"
 
 export default function Main() { 
-
     const [ingredients, setIngredients] = React.useState([])
-    
+    const [ingredientInput, setIngredientInput] = React.useState("")
     const [recipe, setRecipe] = React.useState("")
-    const recipeSection = React.useRef(null) 
-    
+    const recipeSection = React.useRef(null)
+
     React.useEffect(() => {
-        if (recipe !== "" && recipeSection.current !== null) {
-            //recipeSection.current.scrollIntoView({behavior: "smooth"})
-            const yCoord = recipeSection.current.getBoundingClientRect().top + window.scrollY
+        if (recipe && recipeSection.current) {
+            // Smooth scroll to the recipe section when a recipe is generated
+            const yCoord =
+                recipeSection.current.getBoundingClientRect().top + window.scrollY
             window.scroll({
                 top: yCoord,
                 behavior: "smooth"
@@ -22,36 +22,51 @@ export default function Main() {
     }, [recipe])
 
     async function getRecipe() {
+        // Fetch recipe from AI using the current ingredients
         const recipeMarkdown = await getRecipeFromMistral(ingredients)
         setRecipe(recipeMarkdown)
     }
 
-    console.log(recipe)
+    function addIngredient(e) {
+        e.preventDefault()
 
-    function addIngredient(formData) {
-        const newIngredient = formData.get("ingredient")
-        setIngredients(prevIngredients => [...prevIngredients, newIngredient])
+        // Remove leading/trailing spaces
+        const trimmedIngredient = ingredientInput.trim()
+
+        // Ignore empty or whitespace-only input
+        if (!trimmedIngredient) return
+
+        // Prevent duplicate ingredients (optional)
+        if (ingredients.includes(trimmedIngredient)) return
+
+        // Add ingredient to state
+        setIngredients(prev => [...prev, trimmedIngredient])
+
+        // Reset input field
+        setIngredientInput("")
     }
 
     return (
         <main>
-            <form action={addIngredient} className="add-ingredient-form">
+            <form onSubmit={addIngredient} className="add-ingredient-form">
                 <input
                     type="text"
                     placeholder="e.g. oregano"
                     aria-label="Add ingredient"
-                    name="ingredient"
+                    value={ingredientInput}
+                    onChange={e => setIngredientInput(e.target.value)}
                 />
                 <button>Add ingredient</button>
             </form>
-            
-            {ingredients.length > 0 &&
+
+            {ingredients.length > 0 && (
                 <IngredientsList 
                     ref={recipeSection}
-                    ingredients={ingredients} 
-                    getRecipe={getRecipe} 
-                />}
-            
+                    ingredients={ingredients}
+                    getRecipe={getRecipe}
+                />
+            )}
+
             {recipe && <WiseRecipe recipe={recipe} />}
         </main>
     )
