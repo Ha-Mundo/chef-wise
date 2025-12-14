@@ -84,7 +84,7 @@ npm install
 ### 3. Create an .env File
 Create a .env file in the root of your project and add your Hugging Face token:
 ```
-HF_ACCESS_TOKEN=your_huggingface_access_token
+VITE_HF_ACCESS_TOKEN=your_huggingface_access_token
 ```
 Make sure .env is listed in .gitignore to prevent it from being committed.
 
@@ -106,7 +106,7 @@ Your Hugging Face API key is stored in the .env file and never exposed to the br
 
 All requests to Hugging Face go through a serverless backend (/api/get-recipe) to keep your key secure.
 
-Do not use process.env.HF_ACCESS_TOKEN in your frontend code — it will be exposed at build time.
+Do not use process.env.VITE_HF_ACCESS_TOKEN in your frontend code — it will be exposed at build time.
 
 ## ⚙️ Deployment
 ### Deploying with Vercel:
@@ -117,7 +117,7 @@ Do not use process.env.HF_ACCESS_TOKEN in your frontend code — it will be expo
 
 - In Project Settings > Environment Variables, add:
 ```
-Name: HF_ACCESS_TOKEN
+Name: VITE_HF_ACCESS_TOKEN
 Value: your_huggingface_access_token
 ```
 
