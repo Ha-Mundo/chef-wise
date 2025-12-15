@@ -29,22 +29,30 @@ export default function Main() {
 
     function addIngredient(e) {
         e.preventDefault()
-
         // Remove leading/trailing spaces
         const trimmedIngredient = ingredientInput.trim()
-
         // Ignore empty or whitespace-only input
         if (!trimmedIngredient) return
-
         // Prevent duplicate ingredients (optional)
         if (ingredients.includes(trimmedIngredient)) return
-
         // Add ingredient to state
         setIngredients(prev => [...prev, trimmedIngredient])
-
         // Reset input field
         setIngredientInput("")
     }
+
+    function removeAll() {
+        setIngredients([])
+        setRecipe("")
+    }
+
+    function removeIngredient(ingredientToRemove) {
+        setIngredients(prev =>
+        prev.filter(ingredient => ingredient !== ingredientToRemove)
+        )
+    }
+
+
 
     return (
         <main>
@@ -58,14 +66,17 @@ export default function Main() {
                 />
                 <button>Add ingredient</button>
             </form>
+            
 
             {ingredients.length > 0 && (
-                <IngredientsList 
+                <IngredientsList
                     ref={recipeSection}
                     ingredients={ingredients}
                     getRecipe={getRecipe}
+                    onRemove={removeIngredient}
+                    onRemoveAll={removeAll}
                 />
-            )}
+             )}
 
             {recipe && <WiseRecipe recipe={recipe} />}
         </main>
