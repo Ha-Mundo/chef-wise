@@ -24,6 +24,12 @@ header > img {
 
 header > h1 {
     font-weight: 400;
+    font-size: 3rem;
+    font-weight: bolder;
+}
+
+header > h1 > span {
+    color: rgb(209, 117, 87);
 }
 
 main {
@@ -34,7 +40,7 @@ main {
 main > div,
 main > section {
     width: 50%;
-    padding: 1rem;
+    padding: 1.5rem;
     background: bisque;
     border-radius: 15px;
     margin: 1rem;
@@ -74,7 +80,7 @@ button {
     border: none;
     background-color: #D17557;
     color: #FAFAF8;
-    width: 150px;
+    width: 90px;
     font-size: 0.875rem;
     font-weight: 500;
     cursor: pointer;
@@ -164,4 +170,18 @@ ul.ingredients-list > li {
 .adviceCard {
     text-align: center;
     box-shadow: 0 8px 10px -6px rgba(0, 0, 0, 0.3);
+}
+
+@media screen and (max-width: 768px) {
+.ux-layout {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: fit-content;
+    }
+
+main > div,
+main > section {
+    width: 100%;
+    }
 }
