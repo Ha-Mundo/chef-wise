@@ -2,6 +2,7 @@ import React from "react"
 import IngredientsList from "./IngredientsList.jsx"
 import WiseRecipe from "./WiseRecipe.jsx"
 import getRecipeFromMistral from "../ai.js"
+import AdviceCard from "./adviceCard.jsx"
 
 export default function Main() { 
     const [ingredients, setIngredients] = React.useState([])
@@ -55,29 +56,33 @@ export default function Main() {
 
 
     return (
-        <main>
-            <form onSubmit={addIngredient} className="add-ingredient-form">
-                <input
-                    type="text"
-                    placeholder="e.g. oregano"
-                    aria-label="Add ingredient"
-                    value={ingredientInput}
-                    onChange={e => setIngredientInput(e.target.value)}
-                />
-                <button>Add ingredient</button>
-            </form>
-            
+        <main className="ux-layout">
+            <div>
+                <h2>What’s in my pantry?<span>🥕</span></h2>
+                <form onSubmit={addIngredient} className="add-ingredient-form">
+                    <input
+                        type="text"
+                        placeholder="Write an ingredient"
+                        aria-label="Add ingredient"
+                        value={ingredientInput}
+                        onChange={e => setIngredientInput(e.target.value)}
+                        />
+                    <button>Add</button>
+                </form>
+                
+                {ingredients.length <= 0 && (<h4>Your list is empty. Add ingredients to get started!</h4>)}
 
-            {ingredients.length > 0 && (
-                <IngredientsList
+                {ingredients.length > 0 && (
+                    <IngredientsList
                     ref={recipeSection}
                     ingredients={ingredients}
                     getRecipe={getRecipe}
                     onRemove={removeIngredient}
                     onRemoveAll={removeAll}
-                />
-             )}
-
+                    />
+                )}
+            </div>
+            {!recipe && <AdviceCard />}
             {recipe && <WiseRecipe recipe={recipe} />}
         </main>
     )
