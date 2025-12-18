@@ -2,14 +2,14 @@ export default function IngredientsList(props) {
     
     const ingredientsListItems = props.ingredients.map(ingredient => (
         <li key={ingredient} className="ingredient-item">
-            <span>{ingredient}</span>
+           <span>{ingredient}</span>
             <button
                 type="button"
                 className="remove-ingredient-btn"
                 aria-label={`Remove ${ingredient}`}
                 onClick={() => props.onRemove(ingredient)}
             >
-                ✕
+                 ✕
             </button>
         </li>
     ))
@@ -17,7 +17,7 @@ export default function IngredientsList(props) {
     return ( 
         <section className="ingredients-section">
             <div>
-                <h3>Ingredients on hand:</h3>
+                <h4>Ingredients on hand:</h4>
                 <button
                     type="button"
                     onClick={props.onRemoveAll}
@@ -34,8 +34,10 @@ export default function IngredientsList(props) {
         
             {props.ingredients.length > 3 && (
                 <div className="get-recipe-container">
-                    <h3>Ready for a recipe?</h3>
-                    <p>Generate a recipe from your list of ingredients.</p>
+                    <div>
+                        <h3>Ready for a recipe?</h3>
+                        <p>Generate a recipe from your list of ingredients.</p>
+                    </div>
                     <button onClick={props.getRecipe}>
                         Get a recipe
                     </button>
