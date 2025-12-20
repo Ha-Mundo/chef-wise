@@ -1,10 +1,24 @@
-import { forwardRef } from "react";
+import { useEffect, useRef } from "react";
 import ReactMarkdown from "react-markdown";
 
-const WiseRecipe =  forwardRef( function WiseRecipe({ recipe }, ref) {
+export default function WiseRecipe({ recipe }) {
+  const sectionRef = useRef(null);
+
+  useEffect(() => {
+    if (!sectionRef.current) return;
+
+    const isMediumOrSmallScreen = window.matchMedia(
+      "(max-width: 768px)"
+    ).matches;
+
+    if (isMediumOrSmallScreen) {
+      sectionRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  }, []);
+
   return (
     <section
-      ref={ref}
+      ref={sectionRef}
       className="suggested-recipe-container"
       aria-live="polite"
     >
@@ -12,6 +26,4 @@ const WiseRecipe =  forwardRef( function WiseRecipe({ recipe }, ref) {
       <ReactMarkdown>{recipe}</ReactMarkdown>
     </section>
   );
-})
-
-export default WiseRecipe
+}
