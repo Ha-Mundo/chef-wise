@@ -34,22 +34,25 @@ header > h1 > span {
 
 main {
     padding: 30px 30px 10px;
+}
+
+button {
+    cursor: pointer;
+    border: none;
+}
+
+.ux-layout {
     display: flex;  
 }
 
-main > div,
-main > section {
+.ux-layout > div,
+.ux-layout > section {
     width: 50%;
     padding: 1.5rem;
     background: bisque;
     border-radius: 15px;
     margin: 1rem;
     box-shadow: 0 8px 10px -6px rgba(0, 0, 0, 0.3);
-}
-
-button {
-    cursor: pointer;
-    border: none;
 }
 
 .add-ingredient-form {
@@ -80,7 +83,7 @@ button {
     border: none;
     background-color: #D17557;
     color: #FAFAF8;
-    width: 90px;
+    width: 75px;
     font-size: 0.875rem;
     font-weight: 500;
     cursor: pointer;
@@ -99,7 +102,7 @@ button {
     height: fit-content;
     align-items: center;
     line-height: 0;
-    margin: 0;
+    margin: 1rem 0;
 }
 
 .remove-all-btn {
@@ -180,8 +183,8 @@ ul.ingredients-list > li {
     width: fit-content;
     }
 
-main > div,
-main > section {
+.ux-layout > div,
+.ux-layout > section {
     width: 100%;
     }
 }

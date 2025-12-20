@@ -1,0 +1,81 @@
+.not-found-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding: 0 16px;
+}
+
+.not-found-title {
+  font-size: 3rem;
+  font-weight: bold;
+  letter-spacing: -0.05em;
+  transition: transform 0.3s ease-in-out;
+}
+
+.not-found-title:hover {
+  transform: scale(1.1);
+}
+
+.not-found-message {
+  color: #6b7280;
+  text-align: center;
+}
+
+.return-link {
+  display: inline-flex;
+  align-items: center;
+  height: 40px;
+  padding: 0 32px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  text-align: center;
+  border-radius: 8px;
+  background-color: #1f2937;
+  color: #f9fafb;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.return-link:hover {
+  background-color: rgba(31, 41, 55, 0.9);
+}
+
+.return-link:focus-visible {
+  outline: 2px solid #f3f4f6;
+  outline-offset: 2px;
+}
+
+.return-link:disabled {
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+@media (prefers-color-scheme: dark) {
+  .not-found-container {
+    background-color: #111827;
+  }
+
+  .not-found-title {
+    color: #f3f4f6;
+  }
+
+  .not-found-message {
+    color: #e5e7eb;
+  }
+
+  .return-link {
+    background-color: #f3f4f6;
+    color: #111827;
+  }
+
+  .return-link:hover {
+    background-color: rgba(243, 244, 246, 0.9);
+  }
+
+  .return-link:focus-visible {
+    outline: 2px solid #374151;
+  }
+}
