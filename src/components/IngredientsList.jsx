@@ -1,5 +1,5 @@
 export default function IngredientsList(
-  { ingredients, getRecipe, onRemove, onRemoveAll }
+  { ingredients, getRecipe, onRemove, onRemoveAll, loading }
 ) {
   return (
     <section className="ingredients-section" >
@@ -10,6 +10,7 @@ export default function IngredientsList(
           type="button"
           onClick={onRemoveAll}
           className="remove-all-btn"
+          disabled={loading}
         >
           ✕ Remove All
         </button>
@@ -25,6 +26,7 @@ export default function IngredientsList(
               className="remove-ingredient-btn"
               aria-label={`Remove ${ingredient}`}
               onClick={() => onRemove(ingredient)}
+              disabled={loading}
             >
               ✕
             </button>
@@ -39,7 +41,7 @@ export default function IngredientsList(
             <p>Generate a recipe from your list of ingredients.</p>
           </div>
 
-          <button onClick={getRecipe}>Get a recipe</button>
+          <button onClick={getRecipe} disabled={loading}>Get a recipe</button>
         </div>
       )}
     </section>

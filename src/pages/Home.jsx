@@ -26,6 +26,7 @@ export default function Home() {
     <section className="ux-layout">
       <IngredientsInputSection
         ingredients={ingredients}
+        loading={loading}
         setIngredients={setIngredients}
         setRecipe={setRecipe}
         onGetRecipe={handleGetRecipe}

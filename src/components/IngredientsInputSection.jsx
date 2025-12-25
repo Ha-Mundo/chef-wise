@@ -5,12 +5,15 @@ export default function IngredientsInputSection({
   ingredients,
   setIngredients,
   setRecipe,
-  onGetRecipe
+  onGetRecipe,
+  loading
 }) {
   const [ingredientInput, setIngredientInput] = useState("");
 
   function addIngredient(e) {
     e.preventDefault();
+    if (loading) return;
+
     const trimmed = ingredientInput.trim();
     if (!trimmed || ingredients.includes(trimmed)) return;
 
@@ -36,8 +39,9 @@ export default function IngredientsInputSection({
           value={ingredientInput}
           onChange={e => setIngredientInput(e.target.value)}
           placeholder="Write an ingredient"
+          disabled={loading}
         />
-        <button>Add</button>
+        <button disabled={loading}>Add</button>
       </form>
 
       {ingredients.length === 0 && (
@@ -47,10 +51,11 @@ export default function IngredientsInputSection({
       {ingredients.length > 0 && (
         <IngredientsList
           ingredients={ingredients}
+          loading = {loading}
           getRecipe={onGetRecipe}
           onRemove={removeIngredient}
           onRemoveAll={removeAll}
-        />
+          />
       )}
     </div>
   );
