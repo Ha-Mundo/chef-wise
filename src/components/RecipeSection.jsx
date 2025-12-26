@@ -7,7 +7,7 @@ export default function RecipeSection({ loading, recipe, progress }) {
     <section className="adviceCard">
       {loading ? (
         <div>
-          <p>Chef Wise is cooking… 👨‍🍳</p>
+          <p>Turning your ingredients into a smart recipe…</p>
           <ProgressBar value={progress} />
         </div>
       ) : recipe ? (
