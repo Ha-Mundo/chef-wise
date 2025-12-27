@@ -1,20 +1,11 @@
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 import ReactMarkdown from "react-markdown";
+import { useMobileSmoothScroll } from "@/hooks/useMobileSmoothScroll";
 
 export default function WiseRecipe({ recipe }) {
   const sectionRef = useRef(null);
 
-  useEffect(() => {
-    if (!sectionRef.current) return;
-
-    const isMediumOrSmallScreen = window.matchMedia(
-      "(max-width: 768px)"
-    ).matches;
-
-    if (isMediumOrSmallScreen) {
-      sectionRef.current.scrollIntoView({ behavior: "smooth" });
-    }
-  }, []);
+  useMobileSmoothScroll(sectionRef, !!recipe);
 
   return (
     <section
