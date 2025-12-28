@@ -14,9 +14,14 @@ export default defineConfig({
       "@layouts": path.resolve(__dirname, "src/layouts"),
       "@pages": path.resolve(__dirname, "src/pages"),
       "@routes": path.resolve(__dirname, "src/routes"),
-      "@stores": path.resolve(__dirname, "src/stores"),
+      "@services": path.resolve(__dirname, "src/services"),
       "@styles": path.resolve(__dirname, "src/styles"),
       "@utils": path.resolve(__dirname, "src/utils"),
     },
   },
+  server: {
+    fs: {
+      allow: ['src'], // Permette a Vite di accedere alla cartella src durante lo sviluppo
+    }
+  }
 });

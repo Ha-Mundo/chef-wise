@@ -1,5 +1,5 @@
 import { Outlet } from "react-router-dom";
-import DefaultLayout from "@/layouts/DefaultLayout.jsx";
+import DefaultLayout from "@/layouts/DefaultLayout.tsx";
 
 export default function App() {
   return (
