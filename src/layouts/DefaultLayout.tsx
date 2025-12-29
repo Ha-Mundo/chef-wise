@@ -1,7 +1,12 @@
+import { ReactNode } from "react";
 import Header from "@/components/Header";
-import "./DefaultLayout.css";
+import "@/styles/DefaultLayout.css";
 
-export default function DefaultLayout({ children }) {
+type DefaultLayoutProps = {
+  children: ReactNode;
+};
+
+export default function DefaultLayout({ children }: DefaultLayoutProps) {
   return (
     <div className="layout">
       <Header />
