@@ -1,19 +1,21 @@
+import { NavigateFunction } from "react-router-dom";
 import { getRecipeFromAi } from "@/services/recipeService";
+import { Dispatch, SetStateAction } from "react";
 
 export async function generateRecipe(
-  ingredients,
-  setLoading,
-  setProgress,
-  setRecipe,
-  navigate
-) {
+  ingredients: string[],
+  setLoading: Dispatch<SetStateAction<boolean>>,
+  setProgress: Dispatch<SetStateAction<number>>,
+  setRecipe: Dispatch<SetStateAction<string>>,
+  navigate: NavigateFunction
+): Promise<void> {
   setLoading(true);
   setRecipe("");
   setProgress(0);
 
-  // Progress simulation
   let current = 0;
-  const interval = setInterval(() => {
+
+  const interval = window.setInterval(() => {
     current += 10;
     setProgress(current);
   }, 300);
