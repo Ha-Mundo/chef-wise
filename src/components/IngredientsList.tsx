@@ -1,8 +1,22 @@
-export default function IngredientsList(
-  { ingredients, getRecipe, onRemove, onRemoveAll, loading }
-) {
+import { FC } from "react";
+
+type IngredientsListProps = {
+  ingredients: string[];
+  getRecipe: () => void;
+  onRemove: (ingredient: string) => void;
+  onRemoveAll: () => void;
+  loading: boolean;
+};
+
+const IngredientsList: FC<IngredientsListProps> = ({
+  ingredients,
+  getRecipe,
+  onRemove,
+  onRemoveAll,
+  loading,
+}) => {
   return (
-    <section className="ingredients-section" >
+    <section className="ingredients-section">
       <div>
         <h4>Ingredients on hand:</h4>
 
@@ -17,7 +31,7 @@ export default function IngredientsList(
       </div>
 
       <ul className="ingredients-list" aria-live="polite">
-        {ingredients.map(ingredient => (
+        {ingredients.map((ingredient) => (
           <li key={ingredient} className="ingredient-item">
             <span>{ingredient}</span>
 
@@ -41,11 +55,13 @@ export default function IngredientsList(
             <p>Generate a recipe from your list of ingredients.</p>
           </div>
 
-          <button onClick={getRecipe} disabled={loading}>Get a recipe</button>
+          <button onClick={getRecipe} disabled={loading}>
+            Get a recipe
+          </button>
         </div>
       )}
     </section>
   );
 };
 
-
+export default IngredientsList;
