@@ -1,12 +1,23 @@
-import { useRef } from "react";
-import chefWiseLogo from "@/assets/images/chef-wise-icon.png";
+import { useRef, type FC } from "react";
+import chefWiseLogo from "@/assets/chef-wise-icon.png";
 import { ProgressBar } from "@/components/ProgressBar";
 import WiseRecipe from "@/components/WiseRecipe";
 import { useMobileSmoothScroll } from "@/hooks/useMobileSmoothScroll";
 
-export default function RecipeSection({ loading, recipe, progress }) {
-  const sectionRef = useRef(null);
+type RecipeSectionProps = {
+  loading: boolean;
+  recipe: string | null;
+  progress: number;
+};
 
+const RecipeSection: FC<RecipeSectionProps> = ({
+  loading,
+  recipe,
+  progress,
+}) => {
+  const sectionRef = useRef<HTMLElement | null>(null);
+
+  // Scroll into view on mobile when loading starts
   useMobileSmoothScroll(sectionRef, loading);
 
   return (
@@ -20,7 +31,7 @@ export default function RecipeSection({ loading, recipe, progress }) {
         <WiseRecipe recipe={recipe} />
       ) : (
         <div>
-          <img src={chefWiseLogo} />
+          <img src={chefWiseLogo} alt="Chef Wise logo" />
           <p>
             Enter more than three ingredients and click the "Generate Recipe"
             button to see a suggestion!
@@ -29,4 +40,6 @@ export default function RecipeSection({ loading, recipe, progress }) {
       )}
     </section>
   );
-}
+};
+
+export default RecipeSection;
