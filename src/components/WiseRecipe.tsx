@@ -1,11 +1,16 @@
-import { useRef } from "react";
+import { FC, useRef } from "react";
 import ReactMarkdown from "react-markdown";
 import { useMobileSmoothScroll } from "@/hooks/useMobileSmoothScroll";
 
-export default function WiseRecipe({ recipe }) {
-  const sectionRef = useRef(null);
+interface WiseRecipeProps {
+  recipe: string;
+}
 
-  useMobileSmoothScroll(sectionRef, !!recipe);
+const WiseRecipe: FC<WiseRecipeProps> = ({ recipe }) => {
+  const sectionRef = useRef<HTMLElement | null>(null);
+
+  // Scrolls into view on mobile when a recipe is available
+  useMobileSmoothScroll(sectionRef, Boolean(recipe));
 
   return (
     <section
@@ -17,4 +22,6 @@ export default function WiseRecipe({ recipe }) {
       <ReactMarkdown>{recipe}</ReactMarkdown>
     </section>
   );
-}
+};
+
+export default WiseRecipe;
