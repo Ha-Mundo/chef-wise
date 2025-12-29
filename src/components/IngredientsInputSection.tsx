@@ -1,16 +1,24 @@
-import { useState } from "react";
+import { FC, useState, FormEvent } from "react";
 import IngredientsList from "@/components/IngredientsList";
 
-export default function IngredientsInputSection({
+type IngredientsInputSectionProps = {
+  ingredients: string[];
+  setIngredients: React.Dispatch<React.SetStateAction<string[]>>;
+  setRecipe: React.Dispatch<React.SetStateAction<string>>;
+  onGetRecipe: () => void;
+  loading: boolean;
+};
+
+const IngredientsInputSection: FC<IngredientsInputSectionProps> = ({
   ingredients,
   setIngredients,
   setRecipe,
   onGetRecipe,
-  loading
-}) {
-  const [ingredientInput, setIngredientInput] = useState("");
+  loading,
+}) => {
+  const [ingredientInput, setIngredientInput] = useState<string>("");
 
-  function addIngredient(e) {
+  function addIngredient(e: FormEvent<HTMLFormElement>): void {
     e.preventDefault();
     if (loading) return;
 
@@ -21,11 +29,11 @@ export default function IngredientsInputSection({
     setIngredientInput("");
   }
 
-  function removeIngredient(item) {
+  function removeIngredient(item: string): void {
     setIngredients(prev => prev.filter(i => i !== item));
   }
 
-  function removeAll() {
+  function removeAll(): void {
     setIngredients([]);
     setRecipe("");
   }
@@ -51,12 +59,14 @@ export default function IngredientsInputSection({
       {ingredients.length > 0 && (
         <IngredientsList
           ingredients={ingredients}
-          loading = {loading}
+          loading={loading}
           getRecipe={onGetRecipe}
           onRemove={removeIngredient}
           onRemoveAll={removeAll}
-          />
+        />
       )}
     </div>
   );
-}
+};
+
+export default IngredientsInputSection;
