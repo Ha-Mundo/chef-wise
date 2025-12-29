@@ -1,6 +1,11 @@
-import React from "react";
+import { FC, HTMLAttributes } from "react";
 
-function ProgressBar({ value = 0, className = "", ...props }) {
+interface ProgressBarProps extends HTMLAttributes<HTMLDivElement> {
+  value?: number;
+}
+
+const ProgressBar: FC<ProgressBarProps> = ({ value = 0, className = "", ...props }) => {
+  // Clamp value between 0 and 100
   const clampedValue = Math.max(0, Math.min(100, value));
 
   return (
@@ -9,7 +14,7 @@ function ProgressBar({ value = 0, className = "", ...props }) {
       aria-valuenow={clampedValue}
       aria-valuemin={0}
       aria-valuemax={100}
-      className={`progress-root ${className}`}
+      className={`progress-root ${className}`.trim()} //.trim() prevents trailing spaces if className is empty
       {...props}
     >
       <div
@@ -18,6 +23,6 @@ function ProgressBar({ value = 0, className = "", ...props }) {
       />
     </div>
   );
-}
+};
 
 export { ProgressBar };
