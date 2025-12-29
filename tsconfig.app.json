@@ -32,10 +32,10 @@
       "@pages/*": ["src/pages/*"],
       "@routes/*": ["src/routes/*"],
       "@services/*": ["src/services/*"],
-      "@styles/*": ["src/styles/*"],
       "@schemas/*": ["src/schemas/*"],
       "@utils/*": ["src/utils/*"]
     }
   },
-  "include": ["src", "api"]
+  "include": ["src"],
+  "exclude": ["api"]
 }
