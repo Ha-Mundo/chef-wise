@@ -16,12 +16,13 @@ export default defineConfig({
       "@routes": path.resolve(__dirname, "src/routes"),
       "@services": path.resolve(__dirname, "src/services"),
       "@styles": path.resolve(__dirname, "src/styles"),
+      "@schemas": path.resolve(__dirname, "src/schemas"),
       "@utils": path.resolve(__dirname, "src/utils"),
     },
   },
   server: {
     fs: {
-      allow: ['src'], // Permette a Vite di accedere alla cartella src durante lo sviluppo
+      allow: ['src', 'api'], // Permette a Vite di accedere alla cartella src durante lo sviluppo
     }
   }
 });
