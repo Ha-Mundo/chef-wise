@@ -1,18 +1,18 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, NavigateFunction } from "react-router-dom";
 import IngredientsInputSection from "@/components/IngredientsInputSection";
 import RecipeSection from "@/components/RecipeSection";
 import { generateRecipe } from "@/utils/generateRecipe";
 
 export default function Home() {
-  const [ingredients, setIngredients] = useState([]);
-  const [recipe, setRecipe] = useState("");
-  const [loading, setLoading] = useState(false);
-  const [progress, setProgress] = useState(0);
+  const [ingredients, setIngredients] = useState<string[]>([]);
+  const [recipe, setRecipe] = useState<string>("");
+  const [loading, setLoading] = useState<boolean>(false);
+  const [progress, setProgress] = useState<number>(0);
 
-  const navigate = useNavigate();
+  const navigate: NavigateFunction = useNavigate();
 
-  function handleGetRecipe() {
+  function handleGetRecipe(): void {
     generateRecipe(
       ingredients,
       setLoading,
