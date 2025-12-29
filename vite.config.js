@@ -22,7 +22,7 @@ export default defineConfig({
   },
   server: {
     fs: {
-      allow: ['src', 'api'], // Permette a Vite di accedere alla cartella src durante lo sviluppo
+      allow: ['.']
     }
   }
 });
