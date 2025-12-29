@@ -1,14 +1,13 @@
-import chefWiseLogo from "@/assets/images/chef-wise-icon.png";
+import { FC } from "react";
 
-export default function Header() {
+const Header: FC = () => {
   return (
     <header>
-      {/* Logo opzionale */}
-      {/* <img src={chefWiseLogo} alt="ChefWise logo" /> */}
-
       <h1>
         Chef<span>Wise</span>
       </h1>
     </header>
   );
-}
+};
+
+export default Header;
