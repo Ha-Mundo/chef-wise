@@ -24,6 +24,7 @@ dist-ssr
 *.sln
 *.sw?
 
+notes.md
 package-lock.json
 .vercel
 
