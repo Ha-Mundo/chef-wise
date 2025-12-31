@@ -1,70 +1,116 @@
 # 👨‍🍳 Chef Wise — AI-Powered Recipe Generator
 
-**Chef Wise** is a modern React + Vite web app that generates recipes based on the ingredients the user has available.
-It uses Hugging Face’s `google/gemma-2-9b-it` model to create clean, markdown-formatted recipe suggestions.
+![TypeScript](https://img.shields.io/badge/TypeScript-5.x-blue?logo=typescript)
+![Zod](https://img.shields.io/badge/Zod-3.x-5b21b6)
+![Vercel](https://img.shields.io/badge/Vercel-Deployed-black?logo=vercel)
+![React](https://img.shields.io/badge/React-19-blue?logo=react)
+![Vite](https://img.shields.io/badge/Vite-7.x-646cff?logo=vite)
 
-> 🛡️ API security is a top priority: API calls are routed through a secure backend to keep your Hugging Face token private.
+**Chef Wise** is a modern **React + Vite + TypeScript** web application that generates smart recipes based on the ingredients provided by the user.
 
----
+The app leverages **Hugging Face’s `google/gemma-2-9b-it` model** to produce clean, markdown-formatted recipe suggestions.  
+All requests and responses are validated with **Zod**, ensuring runtime safety and predictable data handling across the entire application.
+
+> 🛡️ API security is a top priority: all AI requests are routed through secure **Vercel Serverless Functions**, keeping your Hugging Face access token fully private.
 
 ## 🚀 Features
 
-- ✅ Input any number of ingredients
-- 🧠 Uses AI to generate realistic, markdown-formatted recipes
-- 🔐 API key never exposed to the frontend
-- ⚡ Built with fast and modern tools (React + Vite)
-- 🧼 Clean and easy-to-read UI
+- Input and manage a dynamic list of ingredients
+- AI-generated recipes based on available ingredients
+- Automatic language detection (responses match the user’s input language)
+- Markdown-formatted recipes rendered in the UI
+- Loading progress feedback with smooth mobile scrolling
+- Fully typed with TypeScript
+- Runtime validation with Zod
+- Secure backend API (no exposed secrets)
+- Fast development experience with Vite
 
----
 
 ## 🛠️ How It Works
 
-1 - The user enters a list of ingredients in the UI.
+1. The user enters ingredients in the UI.
+2. The frontend sends a POST request to `/api/getRecipe`.
+3. A Vercel Serverless Function validates the request using Zod.
+4. The backend securely calls the Hugging Face Inference API.
+5. The AI generates a recipe in the detected language.
+6. The response is validated and displayed as formatted Markdown.
 
-2 - The frontend sends a POST request to /api/get-recipe.
 
-3 - A serverless function securely communicates with Hugging Face's API using an access token stored in the backend.
+## 🧩 Architecture Overview
 
-4 - The AI responds with a markdown-formatted recipe.
-
-5 - The frontend displays the recipe to the user.
-
-## 🧩 Architecture Overview 
 ```plaintext
-Frontend (React + Vite)
-      │
-      ▼
-Backend API (/api/get-recipe)
-      │
-      ▼
+Frontend (React + Vite + TypeScript)
+        │
+        ▼
+Vercel Serverless Function (/api/getRecipe)
+        │
+        ▼
 Hugging Face Inference API
-
 ```
+
 
 ## 📁 Project Structure
 
 ```
-Chef-Wise/
-├── api/                      # Serverless backend functions (e.g., for Vercel)
-│   └── get-recipe.js         # Secure Hugging Face API call
-├── components/               # Reusable React components
-│   ├── Header.jsx            # Header UI component
-│   ├── IngredientsList.jsx   # UI for entering ingredients
-│   ├── Main.jsx              # Main layout or routing logic
-│   └── WiseRecipe.jsx        # Displays the generated recipe
-├── images/                   # Static assets (e.g., icons)
-│   └── chef-icon.png
-├── .env                      # Environment variables (NOT committed to Git)
-├── .gitignore                # Git ignore file
-├── ai.js                     # Frontend fetch to backend API
-├── App.js                    # Main App component
-├── eslint.config.js          # ESLint configuration
-├── index.css                 # Global styles
-├── index.html                # HTML entry point for Vite
-├── index.jsx                 # Main React renderer
-├── package.json              # Project metadata and dependencies
-├── package-lock.json         # Exact versions of dependencies
-└── vite.config.js            # Vite configuration
+chef-wise/
+│
+├── api/
+│   └── getRecipe.ts
+│
+├── public/
+│   └── favicon.svg
+├── src/
+│   ├── assets/
+│   │   └── chef-wise-icon.png
+│   │
+│   ├── components/
+│   │   ├── Header.tsx
+│   │   ├── IngredientsInputSection.tsx
+│   │   ├── IngredientsList.tsx
+│   │   ├── ProgressBar.tsx
+│   │   ├── RecipeSection.tsx
+│   │   └── WiseRecipe.tsx
+│   │
+│   ├── hooks/
+│   │   └── useMobileSmoothScroll.ts
+│   │
+│   ├── layouts/
+│   │   └── DefaultLayout.tsx
+│   │
+│   ├── pages/
+│   │   ├── Home.tsx
+│   │   ├── Error.tsx
+│   │   └── NotFound.tsx
+│   │
+│   ├── schemas/
+│   │   └── RecipeSchema.ts
+│   │
+│   ├── services/
+│   │   └── RecipeService.ts
+│   │
+│   ├── styles/
+│   │   ├── index.css
+│   │   ├── DefaultLayout.css
+│   │   ├── Error.css
+│   │   └── NotFound.css
+│   │
+│   ├── utils/
+│   │   └── GenerateUtils.ts
+│   │
+│   ├── App.tsx
+│   ├── main.tsx
+│   └── vite-env.d.ts
+│
+├── .env
+├── index.html
+├── vite.config.ts
+├── tsconfig.json
+├── tsconfig.app.json
+├── tsconfig.api.json
+├── tsconfig.node.json
+├── package.json
+├── package-lock.json
+└── README.md
 
 ```
 
@@ -84,70 +130,82 @@ npm install
 ### 3. Create an .env File
 Create a .env file in the root of your project and add your Hugging Face token:
 ```
-VITE_HF_ACCESS_TOKEN=your_huggingface_access_token
+HF_ACCESS_TOKEN=your_huggingface_access_token
 ```
 Make sure .env is listed in .gitignore to prevent it from being committed.
 
 ### 4. Run Locally
-If using Vercel serverless functions:
+Run the project locally using Vercel Dev:
 ```
-npx vercel dev
+npm start
 ```
+This will start both the frontend and the serverless backend.
 
-Otherwise, to test only the frontend:
-```
-npm run dev
-```
-You’ll need a compatible backend (like Vercel Functions or Express) to run /api/get-recipe.
 
 ## 🔐 Environment & Security
 
-Your Hugging Face API key is stored in the .env file and never exposed to the browser.
+- API keys are never exposed to the client.
 
-All requests to Hugging Face go through a serverless backend (/api/get-recipe) to keep your key secure.
+- All AI requests pass through a secure backend.
 
-Do not use process.env.VITE_HF_ACCESS_TOKEN in your frontend code — it will be exposed at build time.
+- Zod validates both request payloads and AI responses.
+
+- Secrets are managed through environment variables only.
+
 
 ## ⚙️ Deployment
-### Deploying with Vercel:
 
-- Push the project to GitHub.
+The project is designed to be deployed on Vercel.
 
-- Import the project into your Vercel dashboard.
+1. Push the repository to GitHub.
 
-- In Project Settings > Environment Variables, add:
-```
-Name: VITE_HF_ACCESS_TOKEN
-Value: your_huggingface_access_token
-```
+2. Import it into the Vercel dashboard.
 
-Vercel will automatically deploy the frontend and backend (/api folder) together.
+3. Add the HF_ACCESS_TOKEN environment variable.
+
+4. Deploy — frontend and backend are deployed together automatically.
+
+5. Vercel will automatically deploy the frontend and backend (/api folder) together.
+
 
 ## 📦 Built With
 
-- React
+- React 19
+
+- TypeScript
 
 - Vite
 
-- @huggingface/inference
+- Zod
 
-- Vercel Functions
- (or your preferred backend platform)
+- React Router
+
+- Hugging Face Inference API
+
+- Vercel Serverless Functions
+
+- ESLint
+
 
 ## ✨ Potential Improvements
 
-- Add image generation (e.g. using Stable Diffusion)
+- Save recipes to a database
 
-- Save recipes or user profiles with a database
+- User profiles and favorites
 
-- Support drag & drop ingredient input
+- Recipe image generation
 
-- Improve mobile responsiveness
+- Drag & drop ingredient input
 
-##📜 License
+- Improved accessibility and UX
+
+- Offline caching
+
+
+## 📜 License
 
 - This project is open source and available under the MIT License
-.
+
 
 ## 🙌 Acknowledgments
 
