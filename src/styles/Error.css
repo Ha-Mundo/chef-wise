@@ -13,6 +13,7 @@
   font-weight: bold;
   letter-spacing: -0.05em;
   transition: transform 0.2s ease-in-out;
+  cursor: pointer;
 }
 
 .error-title:hover {
@@ -39,14 +40,15 @@
   padding: 0 2rem;
   font-size: 0.875rem;
   font-weight: 500;
-  color: #f9fafb;
+  background-color: #D17557;
+  color: #FAFAF8;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
   transition: background-color 0.3s, box-shadow 0.3s;
   outline: none;
 }
 
 .error-link:hover {
-  background-color: rgba(31, 41, 55, 0.9);
+  background-color: #b8644b; 
 }
 
 .error-link:focus-visible {
@@ -55,7 +57,11 @@
   box-shadow: 0 0 0 1px #1f2937;
 }
 
-@media (prefers-color-scheme: dark) {
+/* @media (prefers-color-scheme: dark) {
+  .error-container {
+    color: #f9fafb;
+    background-color: #111827;
+  }
   .error-link {
     background-color: #f9fafb;
     color: #1f2937;
@@ -73,4 +79,4 @@
 .error-link:disabled {
   pointer-events: none;
   opacity: 0.5;
-}
+} */
