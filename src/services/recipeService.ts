@@ -3,7 +3,7 @@ import { RecipeResponseSchema } from "@/schemas/recipeSchema";
 export async function getRecipeFromAi(
   ingredients: string[]
 ): Promise<string> {
-  const response = await fetch("/api/get-recipe", {
+  const response = await fetch("/api/getRecipe", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
