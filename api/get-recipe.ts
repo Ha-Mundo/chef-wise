@@ -1,6 +1,6 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
 import { InferenceClient } from "@huggingface/inference";
-import { IngredientsSchema, RecipeResponseSchema } from "../src/schemas/recipeSchema";
+import { IngredientsSchema, RecipeResponseSchema } from "../src/schemas/recipeSchema.js";
 
 const SYSTEM_PROMPT = `
 You are an assistant that receives a list of food ingredients and suggests a recipe.
