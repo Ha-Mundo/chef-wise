@@ -152,22 +152,6 @@ This will start both the frontend and the serverless backend.
 
 - Secrets are managed through environment variables only.
 
-
-## ⚙️ Deployment
-
-The project is designed to be deployed on Vercel.
-
-1. Push the repository to GitHub.
-
-2. Import it into the Vercel dashboard.
-
-3. Add the HF_ACCESS_TOKEN environment variable.
-
-4. Deploy — frontend and backend are deployed together automatically.
-
-5. Vercel will automatically deploy the frontend and backend (/api folder) together.
-
-
 ## 📦 Built With
 
 - React 19
