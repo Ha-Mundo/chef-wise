@@ -5,18 +5,19 @@
 ![Vercel](https://img.shields.io/badge/Vercel-Deployed-black?logo=vercel)
 ![React](https://img.shields.io/badge/React-19-blue?logo=react)
 ![Vite](https://img.shields.io/badge/Vite-7.x-646cff?logo=vite)
+![Groq](https://img.shields.io/badge/AI-GroqCloud-orange?logo=google-cloud)
 
 **Chef Wise** is a modern **React + Vite + TypeScript** web application that generates smart recipes based on the ingredients provided by the user.
 
-The app leverages **Hugging Face’s `google/gemma-2-9b-it` model** to produce clean, markdown-formatted recipe suggestions.  
+The app leverages **GroqCloud’s `llama-3.1-8b-instant` model** to produce clean, markdown-formatted recipe suggestions with ultra-low latency.  
 All requests and responses are validated with **Zod**, ensuring runtime safety and predictable data handling across the entire application.
 
-> 🛡️ API security is a top priority: all AI requests are routed through secure **Vercel Serverless Functions**, keeping your Hugging Face access token fully private.
+> 🛡️ API security is a top priority: all AI requests are routed through secure **Vercel Serverless Functions**, keeping your Groq API key fully private and bypassing regional restrictions.
 
 ## 🚀 Features
 
 - Input and manage a dynamic list of ingredients
-- AI-generated recipes based on available ingredients
+- AI-generated recipes based on available ingredients (powered by GroqCloud)
 - Automatic language detection (responses match the user’s input language)
 - Markdown-formatted recipes rendered in the UI
 - Loading progress feedback with smooth mobile scrolling
@@ -25,16 +26,14 @@ All requests and responses are validated with **Zod**, ensuring runtime safety a
 - Secure backend API (no exposed secrets)
 - Fast development experience with Vite
 
-
 ## 🛠️ How It Works
 
 1. The user enters ingredients in the UI.
 2. The frontend sends a POST request to `/api/getRecipe`.
 3. A Vercel Serverless Function validates the request using Zod.
-4. The backend securely calls the Hugging Face Inference API.
-5. The AI generates a recipe in the detected language.
+4. The backend securely calls the **Groq SDK** using a Serverless Function.
+5. The **Llama 3.1** model generates a recipe in the detected language.
 6. The response is validated and displayed as formatted Markdown.
-
 
 ## 🧩 Architecture Overview
 
@@ -45,7 +44,7 @@ Frontend (React + Vite + TypeScript)
 Vercel Serverless Function (/api/getRecipe)
         │
         ▼
-Hugging Face Inference API
+GroqCloud API (Llama 3.1 8b)
 ```
 
 
@@ -128,9 +127,9 @@ npm install
 ```
 
 ### 3. Create an .env File
-Create a .env file in the root of your project and add your Hugging Face token:
+Create a .env file in the root of your project and add your Groq API key:
 ```
-HF_ACCESS_TOKEN=your_huggingface_access_token
+GROQ_API_KEY=your_groq_api_key_here
 ```
 Make sure .env is listed in .gitignore to prevent it from being committed.
 
@@ -164,7 +163,7 @@ This will start both the frontend and the serverless backend.
 
 - React Router
 
-- Hugging Face Inference API
+- Groq SDK - AI Inference (Llama 3.1)
 
 - Vercel Serverless Functions
 
@@ -193,4 +192,6 @@ This will start both the frontend and the serverless backend.
 
 ## 🙌 Acknowledgments
 
-- AI model: `google/gemma-2-9b-it` via Hugging Face
+- AI Infrastructure: GroqCloud
+
+- Model: llama-3.1-8b-instant
