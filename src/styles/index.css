@@ -1,4 +1,5 @@
 * {
+    max-width: 100%;
     box-sizing: border-box;
 }
 
@@ -218,8 +219,32 @@ ul.ingredients-list > li {
   z-index: 20;
 }
 
-/* Media Queries */
+/* =========================
+   Media Queries – Tablet
+   ========================= */
 @media screen and (max-width: 768px) {
+  body {
+    font-size: 14px;
+  }
+
+  header > h1 {
+    font-size: 2.2rem;
+  }
+
+  .get-recipe-container h3 {
+    font-size: 1rem;
+  }
+
+  .suggested-recipe-container {
+    font-size: 1rem;
+    line-height: 24px;
+  }
+
+  .add-ingredient-form > button,
+  .get-recipe-container button {
+    font-size: 0.8rem;
+  }
+
 .ux-layout {
     display: flex;
     flex-direction: column;
@@ -231,4 +256,57 @@ ul.ingredients-list > li {
 .ux-layout > section {
     width: 100%;
     }
+}
+
+/* =========================
+   Media Queries – Smartphone
+   ========================= */
+@media screen and (max-width: 480px) {
+
+  body {
+    font-size: 13px;
+  }
+
+  header {
+    height: 65px;
+  }
+
+  header > img {
+    width: 40px;
+  }
+
+  header > h1 {
+    font-size: 1.8rem;
+  }
+
+  main {
+    padding: 20px 15px 10px;
+  }
+
+  .get-recipe-container h3 {
+    font-size: 0.95rem;
+  }
+
+  .get-recipe-container p {
+    font-size: 0.8rem;
+  }
+
+  .suggested-recipe-container {
+    font-size: 0.95rem;
+    line-height: 22px;
+  }
+
+  ul.ingredients-list > li {
+    font-size: 0.85rem;
+  }
+
+  .add-ingredient-form > input {
+    font-size: 0.85rem;
+  }
+
+  .add-ingredient-form > button,
+  .get-recipe-container button {
+    font-size: 0.75rem;
+    padding: 8px 14px;
+  }
 }
