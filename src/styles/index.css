@@ -144,12 +144,17 @@ ul.ingredients-list > li {
     align-items: start;
     border-radius: 8px;
     background: #F0EFEB;
-    padding: 28px;
+    padding: 20px;
+}
+
+.get-recipe-container > div {
+    line-height:normal;
 }
 
 .get-recipe-container h3 {
     font-size: 1.125rem;
     font-weight: 500;
+    margin-top: 0;
     margin-bottom: 1.5rem;
 }
 
