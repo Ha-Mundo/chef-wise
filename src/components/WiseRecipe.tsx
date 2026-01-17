@@ -7,18 +7,17 @@ interface WiseRecipeProps {
 }
 
 const WiseRecipe: FC<WiseRecipeProps> = ({ recipe }) => {
-  const sectionRef = useRef<HTMLElement | null>(null);
+  const titleRef = useRef<HTMLHeadingElement | null>(null);
 
   // Scrolls into view on mobile when a recipe is available
-  useMobileSmoothScroll(sectionRef, Boolean(recipe));
+  useMobileSmoothScroll(titleRef, Boolean(recipe));
 
   return (
     <section
-      ref={sectionRef}
-      className="suggested-recipe-container"
+      className="suggested-recipe-container animate-fade-in"
       aria-live="polite"
     >
-      <h2>👨‍🍳 Chef Wise Recommends:</h2>
+      <h2 ref={titleRef}>👨‍🍳 Chef Wise Recommends:</h2>
       <ReactMarkdown>{recipe}</ReactMarkdown>
     </section>
   );
