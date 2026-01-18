@@ -1,16 +1,18 @@
-import type { VercelRequest, VercelResponse } from '@vercel/node';
+import type { VercelRequest, VercelResponse } from "@vercel/node";
 import Groq from "groq-sdk"; // Importing SDK for Groq AI services
 import { IngredientsSchema, RecipeResponseSchema } from "../src/schemas/recipeSchema.js";
 
+// System prompt that strictly enforces English-only responses
 const SYSTEM_PROMPT = `
 You are an assistant that receives a list of food ingredients and suggests a recipe.
+
 Rules:
+- You MUST respond in English only.
+- Do not use any other language.
+- If you use any language other than English, the response is invalid.
 - Suggest a recipe using some or all of the ingredients.
-- You may add up to 3 extra ingredients (excluding common pantry items like salt, oil, water).
+- You may add up to 3 extra ingredients (excluding common pantry items like salt, pepper, oil, water).
 - Ignore non-food or irrelevant text.
-- Detect the language used in the ingredients list.
-- Respond ONLY in that language.
-- Do not mix languages.
 - Format the response in Markdown.
 - Do not include code blocks.
 `;
@@ -45,7 +47,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
         { role: "user", content: parsedBody.data.ingredients.join(", ") },
       ],
       model: "llama-3.1-8b-instant", // High-performance model for text generation
-      temperature: 0.7,
+      temperature: 0.4, // Lower temperature for higher instruction adherence
       max_tokens: 1024,
     });
 
@@ -61,6 +63,9 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   } catch (err: any) {
     // Error Handling: Log and return detailed error info
     console.error("Groq Inference Error:", err.message);
-    return res.status(500).json({ error: "Generation failed", details: err.message });
+    return res.status(500).json({
+      error: "Generation failed",
+      details: err.message,
+    });
   }
 }
