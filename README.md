@@ -18,7 +18,6 @@ All requests and responses are validated with **Zod**, ensuring runtime safety a
 
 - Input and manage a dynamic list of ingredients
 - AI-generated recipes based on available ingredients (powered by GroqCloud)
-- Automatic language detection (responses match the user’s input language)
 - Markdown-formatted recipes rendered in the UI
 - Loading progress feedback with smooth mobile scrolling
 - Fully typed with TypeScript
@@ -32,7 +31,7 @@ All requests and responses are validated with **Zod**, ensuring runtime safety a
 2. The frontend sends a POST request to `/api/getRecipe`.
 3. A Vercel Serverless Function validates the request using Zod.
 4. The backend securely calls the **Groq SDK** using a Serverless Function.
-5. The **Llama 3.1** model generates a recipe in the detected language.
+5. The **Llama 3.1** model generates a recipe.
 6. The response is validated and displayed as formatted Markdown.
 
 ## 🧩 Architecture Overview
@@ -117,7 +116,7 @@ chef-wise/
 
 ### 1. Clone the Project
 ```
-git clone https://github.com/yourusername/chef-Wise.git
+git clone https://github.com/Ha-Mundo/chef-wise.git
 cd chef-Wise
 ```
 
@@ -171,6 +170,8 @@ This will start both the frontend and the serverless backend.
 
 
 ## ✨ Potential Improvements
+
+- Automatic language detection (responses match the user’s input language)
 
 - Save recipes to a database
 
