@@ -1,4 +1,5 @@
 # 👨‍🍳 Chef Wise — AI-Powered Recipe Generator
+
 ![TypeScript](https://img.shields.io/badge/TypeScript-5.x-blue?logo=typescript)
 ![Zod](https://img.shields.io/badge/Zod-3.x-5b21b6)
 ![Vercel](https://img.shields.io/badge/Vercel-Deployed-black?logo=vercel)
