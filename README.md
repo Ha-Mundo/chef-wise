@@ -117,6 +117,7 @@ chef-wise/
 ### 1. Clone the Project
 ```
 git clone https://github.com/Ha-Mundo/chef-wise.git
+
 cd chef-Wise
 ```
 
