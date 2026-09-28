@@ -9,7 +9,7 @@
 
 **Chef Wise** is a modern **React + Vite + TypeScript** web application that generates smart recipes based on the ingredients provided by the user.
 
-The app leverages **GroqCloud’s `llama-3.1-8b-instant` model** to produce clean, markdown-formatted recipe suggestions with ultra-low latency.  
+The app leverages **GroqCloud’s `gpt-oss-20b` model** to produce clean, markdown-formatted recipe suggestions with ultra-low latency.  
 All requests and responses are validated with **Zod**, ensuring runtime safety and predictable data handling across the entire application.
 
 > 🛡️ API security is a top priority: all AI requests are routed through secure **Vercel Serverless Functions**, keeping your Groq API key fully private and bypassing regional restrictions.
@@ -31,7 +31,7 @@ All requests and responses are validated with **Zod**, ensuring runtime safety a
 2. The frontend sends a POST request to `/api/getRecipe`.
 3. A Vercel Serverless Function validates the request using Zod.
 4. The backend securely calls the **Groq SDK** using a Serverless Function.
-5. The **Llama 3.1** model generates a recipe.
+5. The **gpt-oss-20b** model generates a recipe.
 6. The response is validated and displayed as formatted Markdown.
 
 ## 🧩 Architecture Overview
@@ -43,7 +43,7 @@ Frontend (React + Vite + TypeScript)
 Vercel Serverless Function (/api/getRecipe)
         │
         ▼
-GroqCloud API (Llama 3.1 8b)
+GroqCloud API (gpt-oss-20b)
 ```
 
 
@@ -163,7 +163,7 @@ This will start both the frontend and the serverless backend.
 
 - React Router
 
-- Groq SDK - AI Inference (Llama 3.1)
+- Groq SDK - AI Inference (gpt-oss-20b)
 
 - Vercel Serverless Functions
 
@@ -196,4 +196,4 @@ This will start both the frontend and the serverless backend.
 
 - AI Infrastructure: GroqCloud
 
-- Model: llama-3.1-8b-instant
+- Model: gpt-oss-20b
