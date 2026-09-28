@@ -14,7 +14,7 @@ Rules:
 - You may add up to 3 extra ingredients (excluding common pantry items like salt, pepper, oil, water).
 - Ignore non-food or irrelevant text.
 - Format the response in Markdown.
-- Do not include code blocks.
+- Return raw markdown text. Do NOT wrap the response in markdown code blocks (\`\`\`).
 `;
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
@@ -40,15 +40,15 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     // 4. Client Initialization: Set up the Groq SDK
     const groq = new Groq({ apiKey });
 
-    // 5. AI Interaction: Using Llama 3.1 8b (fast, free-tier) for recipe generation
+    // 5. AI Interaction: Using GPT-OSS 20b (fast, free-tier) for recipe generation
     const completion = await groq.chat.completions.create({
       messages: [
         { role: "system", content: SYSTEM_PROMPT },
         { role: "user", content: parsedBody.data.ingredients.join(", ") },
       ],
-      model: "llama-3.1-8b-instant", // High-performance model for text generation
-      temperature: 0.4, // Lower temperature for higher instruction adherence
-      max_tokens: 1024,
+      model: "openai/gpt-oss-20b", // High-performance model for text generation
+      temperature: 0.6, // Higher temperature to encourage more creative and less robotic recipes.
+      max_tokens: 2048,
     });
 
     const recipe = completion.choices[0]?.message?.content;
